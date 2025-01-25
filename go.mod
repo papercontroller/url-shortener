@@ -3,6 +3,7 @@ module main
 go 1.21.2
 
 require (
+	github.com/go-chi/chi v1.5.5
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	modernc.org/sqlite v1.34.5
 )
