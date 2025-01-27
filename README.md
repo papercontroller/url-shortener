@@ -127,15 +127,4 @@ Open in browser:
 http://localhost:8000/google
 ```
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request to suggest improvements or new features.
-
----
-
-**Author**: [Your Name]
 
