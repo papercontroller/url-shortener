@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log/slog"
 	"main/internal/config"
+	"main/internal/http-server/handler/redirect"
+	"main/internal/http-server/handler/remove"
 	"main/internal/http-server/handler/url/save"
 	"main/internal/storage/sqlite"
 	"net/http"
@@ -43,6 +45,8 @@ func main() {
 	router.Use(middleware.URLFormat)
 
 	router.Post("/url", save.New(log, storage))
+	router.Get("/{alias}", redirect.New(log, storage))
+	router.Delete("/{alias}", remove.New(log, storage))
 
 	log.Info("starting server", slog.String("address", cfg.Address))
 
