@@ -1,4 +1,6 @@
-# URL Shortener
+# README - URL Shortener
+
+## Overview
 
 URL Shortener is a web-based application that allows users to generate shortened versions of long URLs for easier sharing and management. It provides features like alias customization, URL deletion, and basic authentication for secure access.
 
@@ -8,6 +10,7 @@ URL Shortener is a web-based application that allows users to generate shortened
 - **Custom Aliases**: Specify a custom alias for your shortened URL.
 - **Delete Shortened URLs**: Remove previously created shortened URLs.
 - **Basic Authentication**: Protect API endpoints using username and password.
+- **Docker Support**: Easily deploy the application using Docker.
 
 ## Technology Stack
 
@@ -17,7 +20,7 @@ URL Shortener is a web-based application that allows users to generate shortened
 - **Logging**: slog for structured logging
 - **Validation**: go-playground/validator for input validation
 
-## Endpoints
+## API Endpoints
 
 ### 1. Create Shortened URL
 **POST** `/url`
@@ -83,6 +86,10 @@ HTTPServer:
   Password: "mypass"
 ```
 
+## Database
+
+The application uses an SQLite database for storing shortened URLs. The database file is stored locally, and no additional migrations are required.
+
 ## How to Run
 
 ### Prerequisites
@@ -107,13 +114,25 @@ HTTPServer:
 
 4. The application will be available at `http://localhost:8000`.
 
+## Running with Docker
+
+You can also run the application using Docker:
+
+### Build the Docker Image
+```bash
+docker build -t url-shortener .
+```
+
+### Run the Container
+```bash
+docker run -p 8000:8000 --env HTTPServer_User=myuser --env HTTPServer_Password=mypass url-shortener
+```
+
 ## Testing with `curl`
 
 ### Create a Shortened URL:
 ```bash
-curl -u myuser:mypass -X POST http://localhost:8000/url \
--d '{"url": "https://www.google.com", "alias": "google"}' \
--H "Content-Type: application/json"
+curl -u myuser:mypass -X POST http://localhost:8000/url -d '{"url": "https://www.google.com", "alias": "google"}' -H "Content-Type: application/json"
 ```
 
 ### Delete a Shortened URL:
@@ -126,5 +145,4 @@ Open in browser:
 ```
 http://localhost:8000/google
 ```
-
 
